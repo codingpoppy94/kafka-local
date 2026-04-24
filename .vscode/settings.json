@@ -1,0 +1,12 @@
+{
+  "python.defaultInterpreterPath": ".venv\\Scripts\\python.exe",
+  "ruff.importStrategy": "useBundled",
+  "ruff.nativeServer": "on",
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.ruff": "explicit"
+    }
+  }
+}
