@@ -29,20 +29,22 @@ def generate_logs():
   # json 형태로 파일 기록(한줄에 로그 1개씩) -> dict 객체의 직렬화 처리
   # 파일명 ./sensor_logs/sensor_json.log
   # 한줄에 JSON 객체 1개씩 문자열로 기록 (JSON Lines : JSONL)
-  jsonStr = json.dumps(data)
-  with open(f"{log_dir}/sensor_json.log', 'a', encoding='UTF-8") as f:
-    f.write(jsonStr + '\n')
-  # 구현하시오
+  json_str = json.dumps(data)
+  with open(f'{log_dir}/sensor_json.log', 'a', encoding='UTF-8') as f:
+    f.write(json_str + '\n')
 
   # text 형태로 파일 기록(한줄에 로그 1개씩) -> f-string 구성
   # 파일명 ./sensor_logs/sensor_text.log
-  text = f'[{data["timestamp"]}] ID={data["sensor_id"]} | TEMP:{data["temperature"]} | HUMI:{data["humidity"]} | STAT:{data["status"]}'
-  jsonStr = json.dumps(data)
+  text = (
+    f'[{data["timestamp"]}] ID={data["sensor_id"]} | '
+    f'TEMP:{data["temperature"]} | '
+    f'HUMI:{data["humidity"]} | '
+    f'STAT:{data["status"]}'
+  )
   with open(f'{log_dir}/sensor_text.log', 'a', encoding='UTF-8') as f:
     f.write(text + '\n')
-    print(f'로그 발생 완료 {data["timestamp"]}')
 
-  pass
+  print(f'로그 발생 완료 {data["timestamp"]}')
 
 
 def main():
@@ -50,7 +52,7 @@ def main():
     while True:
       generate_logs()
       time.sleep(2)
-  except Exception:
+  except KeyboardInterrupt:
     print('종료')
 
 
